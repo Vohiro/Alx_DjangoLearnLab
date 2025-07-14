@@ -4,5 +4,5 @@ from relationship_app import views
 
 urlpatterns=[
     path('display-book/', views.display_book_list, name='Display Book List'),
-    path('library-list/', views.LibraryListView.as_view(), name='Library List Detail'),
-        ]
+    path('library-detail/<int:pk>/', views.LibraryDetailView.as_view(), name='library detail'),
+         ]
