@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from relationship_app.models import Author, Book, Library, Librarian
+from .models import Library, Book, Author, Librarian
 from django.views.generic import DetailView
 
 # Create your views here.
@@ -14,4 +14,4 @@ def display_book_list(request):
 class LibraryDetailView(DetailView):
     """ A class based view for displaying list details of a specific library """
     model = Library
-    template_name = 'rela`tionship_app/library_detail.html'
+    template_name = "relationship_app/library_detail.html"
