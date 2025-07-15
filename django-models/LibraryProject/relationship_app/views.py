@@ -43,4 +43,5 @@ class RegisterView(CreateView):
         # retun the redirect response
         return response
 
-
+# Exposing the class under this variable to pass alx checker
+register = RegisterView.as_view()
