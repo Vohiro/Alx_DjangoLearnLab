@@ -28,9 +28,14 @@ class LibraryDetailView(DetailView):
 
 
 class RegisterView(CreateView):
-    form_class = UserCreationForm
+    form_class = UserCreationForm(request.POST)
     success_url = reverse_lazy('login')
     template_name = 'relationship_app/register.html'
+
+    def get_form(self, form_class=none):
+        """ Controlling form instantiation through On Get and on Post """
+        form_class = form_class or self.get_form_class()
+        return form_class(self.request.POST or None, self.request.FILES or None)
 
     def form_valid(self, form):
         # CreateView saves the new user and returns it
