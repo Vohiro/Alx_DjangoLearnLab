@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Library, Book, Author, Librarian, Bookform
+from .models import Library, Book, Author, Librarian, BookForm
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView
@@ -67,40 +67,40 @@ def is_member(user):
 
 # Admin view
 @login_required(login_url='/relationship_app/login/')
-@user_passes_test(is_admin)
+@user_passes_test(is_admin, login_url='/relationship_app/login/')
 def admin_view(request):
     return render(request, 'relationship_app/admin_view.html')
 
 # Librarian view
-@user_passes_test(is_librarian)
-@login_required
+@user_passes_test(is_librarian, login_url='/relationship_app/login/')
+@login_required(login_url='/relationship_app/login/')
 def librarian_view(request):
     return render(request, 'relationship_app/librarian_view.html')
 
 # Member view
-@user_passes_test(is_member)
-@login_required
+@user_passes_test(is_member, login_url='/relationship_app/login/')
+@login_required(login_url='/relationship_app/login/')
 def member_view(request):
     return render(request, 'relationship_app/member_view.html')
 
-@permission_required('relationship_app.can_add_book', raise_except=True)
+@permission_required('relationship_app.can_add_book', raise_exception=True)
 def add_book(request):
     if request.method == 'POST':
         if form.is_valid():
             form.save()
-            return redirect('display-book')
+            return redirect('display-book-list')
     else:
         form = BookForm()
     return render(request, 'relationship_app/book_form.html', {'form': form})
 
 @permission_required('relationship_app.can_change_book', raise_exception=True)
 def edit_book(request, pk):
-    book = get_object_or404(Book, pk=pk)
+    book = get_object_or_404(Book, pk=pk)
     if request.method == 'POST':
         form = BookForm(request.POST, instance=book)
         if form.is_valid():
             form.save()
-            return redirect('display-book')
+            return redirect('display-book-list')
     else:
         form = BookForm(instance=book)
     return render(request, 'relationship_app/book_form.html', {'form': form})
@@ -109,7 +109,6 @@ def edit_book(request, pk):
 def delete_book(request, pk):
     book = get_object_or_404(Book, pk=pk)
     if request.method == 'POST':
-        if form.is_valid():
-            form.delete()
-            return redirect('display-book')
+        book.delete()
+        return redirect('display-book-list')
     return render(request, 'relationshipp_app/confirm_delete_book.html', {'book': book})

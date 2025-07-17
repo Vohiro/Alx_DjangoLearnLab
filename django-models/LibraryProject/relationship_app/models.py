@@ -24,7 +24,7 @@ class Book(models.Model):
             ('can_delete_book', 'can delete book'),
                 ]
 
-class BookForm(forms.modelForm):
+class BookForm(forms.ModelForm):
     class Meta:
         model = Book
         fields = ['author', 'title']

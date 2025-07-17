@@ -15,5 +15,5 @@ urlpatterns=[
     path('member-only/', views.member_view, name='member_view'),
     path('add_book/', views.add_book, name='add-book'),
     path('edit_book/<int:pk>/', views.edit_book, name='edit-book'),
-    path('delete_book/<int:pk>/', view.delete_book, name='delete-book')
+    path('delete_book/<int:pk>/', views.delete_book, name='delete-book')
          ]

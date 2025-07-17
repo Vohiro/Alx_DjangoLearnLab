@@ -1,0 +1,13 @@
+{% load static %}
+
+<h2>{{ form.instance.pk|yesno:"Edit Book,Add Book" }}</h2>
+
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit" class="btn btn-primary">
+    {{ form.instance.pk|yesno:"Update,Create" }}
+  </button>
+</form>
+
+<a href="{% url 'display-book-list' %}">Back to list</a>
