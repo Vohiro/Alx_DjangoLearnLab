@@ -1,12 +1,12 @@
-from django.shortcuts import render
-from .models import Library, Book, Author, Librarian
+from django.shortcuts import render, get_object_or_404, redirect
+from .models import Library, Book, Author, Librarian, Bookform
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 from django.urls import reverse_lazy
-from django.contrib.auth.decorators import user_passes_test, login_required
+from django.contrib.auth.decorators import user_passes_test, login_required, permission_required
 
 # Create your views here.
 
@@ -66,8 +66,8 @@ def is_member(user):
     return hasattr(user, 'userprofile') and user.userprofile.role == 'Member'
 
 # Admin view
+@login_required(login_url='/relationship_app/login/')
 @user_passes_test(is_admin)
-@login_required
 def admin_view(request):
     return render(request, 'relationship_app/admin_view.html')
 
@@ -83,3 +83,33 @@ def librarian_view(request):
 def member_view(request):
     return render(request, 'relationship_app/member_view.html')
 
+@permission_required('relationship_app.can_add_book', raise_except=True)
+def add_book(request):
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect('display-book')
+    else:
+        form = BookForm()
+    return render(request, 'relationship_app/book_form.html', {'form': form})
+
+@permission_required('relationship_app.can_change_book', raise_exception=True)
+def edit_book(request, pk):
+    book = get_object_or404(Book, pk=pk)
+    if request.method == 'POST':
+        form = BookForm(request.POST, instance=book)
+        if form.is_valid():
+            form.save()
+            return redirect('display-book')
+    else:
+        form = BookForm(instance=book)
+    return render(request, 'relationship_app/book_form.html', {'form': form})
+
+@permission_required('relationship_app.can_delete_book', raise_exception=True)
+def delete_book(request, pk):
+    book = get_object_or_404(Book, pk=pk)
+    if request.method == 'POST':
+        if form.is_valid():
+            form.delete()
+            return redirect('display-book')
+    return render(request, 'relationshipp_app/confirm_delete_book.html', {'book': book})
