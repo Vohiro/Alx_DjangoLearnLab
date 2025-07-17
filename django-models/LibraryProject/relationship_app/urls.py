@@ -13,7 +13,7 @@ urlpatterns=[
     path('admin-only/', views.admin_view, name='admin_view'),
     path('librarian-only/', views.librarian_view, name='librarian_view'),
     path('member-only/', views.member_view, name='member_view'),
-    path('books/add/', views.add_book, name='add-book'),
-    path('books/<int:pk>/edit/', views.edit_book, name='edit-book'),
-    path('books/<int:pk>/delete/', view.delete_book, name='delete-book')
+    path('add_book/', views.add_book, name='add-book'),
+    path('edit_book/<int:pk>/', views.edit_book, name='edit-book'),
+    path('delete_book/<int:pk>/', view.delete_book, name='delete-book')
          ]
