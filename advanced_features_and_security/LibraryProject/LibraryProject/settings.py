@@ -129,7 +129,7 @@ AUTH_USER_MODEL = 'bookshelf.CustomUser'
 SECURE_BROWSER_XSS_FILTER = True
 
 # Prevent browser from guessing content types
-SECURE_CONTENT_TYPE_NONSNIFF = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
 
 # Protect against clickjacking
 X_FRAME_OPTIONS = 'DENY'
