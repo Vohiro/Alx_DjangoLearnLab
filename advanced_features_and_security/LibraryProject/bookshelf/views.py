@@ -29,7 +29,7 @@ def book_edit(request, pk):
             return redirect ('book_list')
         else:
             form = ExampleForm(instance=book)
-    return render(request, 'book/book_form.html', {'form': form})
+    return render(request, 'book/form_example.html', {'form': form})
 
 @permission_required('bookshelf.can_delete', raise_exception=True)
 def book_delete(request, pk):
