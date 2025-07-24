@@ -132,7 +132,7 @@ SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NONSNIFF = True
 
 # Protect against clickjacking
-X_FRAME_OPTINS = 'DENY'
+X_FRAME_OPTIONS = 'DENY'
 
 # Send CSRF and Session cookies only over HTTPS
 CSRF_COOKIE_SECURE = True
