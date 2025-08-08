@@ -3,7 +3,7 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticate
 from .models import Book
 from .serializers import BookSerializer
 from django.contrib import messages
-from django_filters.rest_framework import DjangoFilterBackend
+from django_filters import rest_framework
 
 class ListView(generics.ListAPIView):
     permission_classes = (IsAuthenticatedOrReadOnly,)
@@ -11,7 +11,7 @@ class ListView(generics.ListAPIView):
     serializer_class = BookSerializer
 
     # Enabling filtering, searching and ordering
-    filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
+    filter_backends = [rest_framework.DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     filterset_fields = ['title', 'author', 'publication_year'] #filtering by fields
     search_fields = ['title', 'author'] # search setup
     ordering_fields = ['title','publication_year'] # ordering setup
