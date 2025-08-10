@@ -21,6 +21,7 @@ class APITestCase(TestCase):
         self.assertEqual(self.book.publication_year, 2025)
 
     def test_get_book_details(self):
+        # self.client.login
         response = self.client.get('book_list')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertIn('author', response.data[0])
