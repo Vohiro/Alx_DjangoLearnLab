@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # blog app
     'blog.apps.BlogConfig',
+    # Account Management app
+    'accounts.apps.AccountsConfig'
 ]
 
 MIDDLEWARE = [
@@ -125,3 +127,7 @@ STATICFILES_DIRS = [ BASE_DIR / "static"]
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# login and logout redirection setting
+LOGIN_REDIRECT_URL = "/accounts/profile"
+LOGOUT_REDIRECT_URL = "/accounts/profile"
