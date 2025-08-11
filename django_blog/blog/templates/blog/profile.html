@@ -1,7 +1,7 @@
 {% extends "blog/base.html" %}
 
 {% block content %}
-    <h2>Profile Section</h2>
+    <h2>My Profile</h2>
     {% if user.is_authenticated %} You are logged in as {{ user }}.
         <form action="{% url 'logout' %}" method="post">
             {% csrf_token %}
@@ -9,5 +9,16 @@
         </form>
     {% else %} You are not logged in.
         <a href="{% url 'login' %}">Click here to log in.</a>
+    {% endif %}
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ user_form.as_p }}
+        {{ profile_form.as_p }}
+        <button type="submit">Update Profile</button>
+    </form>
+
+    {% if user.profile.profile_picture %}
+        <img src="{{ user.profile.profile_pics.url }}" alt="Profile Picture" style="width:150px;height:150px;">
     {% endif %}
 {% endblock content %}
