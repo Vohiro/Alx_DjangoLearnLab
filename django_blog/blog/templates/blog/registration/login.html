@@ -1,10 +1,13 @@
 {% load static %}
 
-{% extends "blog/base.html" %}
-
-
-{% block content %}
-    <h2>Log In</h2>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login</title>
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+  <h2>Log In</h2>
     {% if form.errors %}
         <p>Your username and password didn't match. Please try again.</p>
     {% endif %}
@@ -12,5 +15,6 @@
         {{ form.as_p }}
         <button type="submit">Log In</button>
     </form>
-{% endblock content %}
-
+  <script src="{% static 'js/scripts.js' %}"></script>
+</body>
+</html>
