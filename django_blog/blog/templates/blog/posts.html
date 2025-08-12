@@ -14,5 +14,12 @@
          Published {{ post.published_date }} by {{ post.author }}
       </p>
       {{ post.body|truncatewords:30|linebreaks }}
+   {% empty %}
+      <p>No posts yet.</p>
    {% endfor %}
+   <!-- <a href="{% url 'post_new' %}">+ New Post</a> -->
+    <form action="{% url 'post_new' %}" method="post">
+            {% csrf_token %}
+            <button type="submit">New Post</button>
+    </form>
 {% endblock content %}
