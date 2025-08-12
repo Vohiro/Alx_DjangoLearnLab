@@ -129,8 +129,8 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # login and logout redirection setting
-LOGIN_REDIRECT_URL = '/blog/profile'
-LOGOUT_REDIRECT_URL = '/blog/profile'
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'home'
 
 # Media setting
 MEDIA_URL = '/media/'
