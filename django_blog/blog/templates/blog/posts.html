@@ -4,12 +4,20 @@
 
 {% block content %}
     <h2>Post Page</h2>
+
+    <!-- Search form -->
+    <form method="get" action="">
+        <input type="text" name="q" placeholder="Search posts..." value="{{ query }}">
+        <button type="submit">Search</button>
+    </form>
+
     {% for post in posts %}
       <h2>
          <a href="{{ post.get_absolute_url }}">
          {{ post.title }}
          </a>
       </h2>
+
       <p class="tags">
          Tags:
          {% for tag in post.tags.all %}
@@ -19,6 +27,7 @@
             {% if not forloop.last %}, {% endif %}
          {% endfor %}
       </p>
+
       <p class="date">
          Published {{ post.published_date }} by {{ post.author }}
       </p>
@@ -26,8 +35,10 @@
    {% empty %}
       <p>No posts yet.</p>
    {% endfor %}
+
     <form action="{% url 'post_new' %}" method="post">
             {% csrf_token %}
             <button type="submit">New Post</button>
     </form>
+    
 {% endblock content %}
