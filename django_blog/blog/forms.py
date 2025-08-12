@@ -22,9 +22,9 @@ class PostForm(forms.ModelForm):
         model = Post
         fields = ['title', 'content', 'tags']
         widgets = {
-            'title': forms.TextInput(attrs={'class': 'form-control'}),
-            'body': forms.Textarea(attrs={'class': 'form-control'}),
-            'tags': TagWidget(attrs={'class': 'form-control'}),  # Tag widget added
+            'title': forms.TextInput(),
+            'body': forms.Textarea(),
+            'tags': TagWidget(), 
         }
 
 
