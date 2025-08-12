@@ -34,30 +34,37 @@ class PostsView(ListView):
     context_object_name = 'posts'
     ordering = ['-published_date']
 
+    
+class PostByTagListView(ListView):
+    model = Post
+    template_name = 'blog/posts_by_tag.html'
+    context_object_name = 'posts'
+
     def get_queryset(self):
-        queryset = super().get_queryset()
-        self.tag = None
-        self.query = None
-
         tag_slug = self.kwargs.get('tag_slug')
-        if tag_slug:
-            self.tag = get_object_or_404(Tag, slug=tag_slug)
-            queryset = queryset.filter(tags__in=[self.tag])
-
-        self.query = self.request.GET.get('q')
-        if self.query:
-            queryset = Post.objects.filter(
-                Q(title__icontains=self.query) |
-                Q(content__icontains=self.query) |
-                Q(tags__name__icontains=self.query)
-            ).distinct()
-
-        return queryset
+        tag = get_object_or_404(Tag, slug=tag_slug)
+        return Post.objects.filter(tags__in=[tag])
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['tag'] = self.tag
-        context['query'] = self.query
+        context['tag'] = get_object_or_404(Tag, slug=self.kwargs.get('tag_slug'))
+        return context
+    
+    
+class PostBySearchView(ListView):
+    model = Post
+    template_name = 'blog/posts_by_search.html'
+    context_object_name = 'posts'
+
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        if query:
+            return Post.objects.filter(title__icontains=query) | Post.objects.filter(content__icontains=query) | Post.objects.filter(tags__name__icontains=query)
+        return Post.objects.none()
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['query'] = self.request.GET.get('q', '')
         return context
 
 
