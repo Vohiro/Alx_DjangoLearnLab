@@ -4,13 +4,6 @@
 {% block title %}Add comment{% endblock %}
 
 {% block content %}
-    <!--
-    <form action="{% url "post_comment" post.pk %}" method="post">
-        {{ form.as_p }}
-        {% csrf_token %}
-        <p><input type="submit" value="Add comment"></p>
-    </form>
-    -->
     {% if user.is_authenticated %}
         <form method="post">
             {% csrf_token %}

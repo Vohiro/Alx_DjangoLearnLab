@@ -18,6 +18,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 class RegisterView(CreateView):
     form_class = UserCreationForm
     success_url = reverse_lazy("login")
+    template_name = 'blog/register.html'
 
 
 class HomeView(TemplateView):
