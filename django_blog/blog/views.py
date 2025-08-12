@@ -14,6 +14,9 @@ from .forms import UserUpdateForm, ProfileUpdateForm, PostForm, CommentForm
 from django.contrib import messages
 from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from taggit.models import Tag
+from django.db.models import Count
+
 
 class RegisterView(CreateView):
     form_class = UserCreationForm
@@ -30,6 +33,21 @@ class PostsView(ListView):
     template_name = 'blog/posts.html'
     context_object_name = 'posts'
     ordering = ['-published_date']
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        self.tag = None
+        tag_slug = self.kwargs.get('tag_slug')
+
+        if tag_slug:
+            self.tag = get_object_or_404(Tag, slug=tag_slug)
+            queryset = queryset.filter(tags__in=[self.tag])
+        return queryset
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['tag'] = self.tag
+        return context
 
 
 class PostDetailView(DetailView):
@@ -54,7 +72,6 @@ class PostCreatView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
-    
 
 
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):

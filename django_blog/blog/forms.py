@@ -15,9 +15,12 @@ class ProfileUpdateForm(forms.ModelForm):
         fields = ['bio', 'profile_pics']
 
 class PostForm(forms.ModelForm):
+    tags = forms.CharField(required=False, help_text='Comma-separated tags')
+
     class Meta:
         model = Post
-        fields = ['title', 'content']
+        fields = ['title', 'content', 'tags']
+
 
 class CommentForm(forms.ModelForm):
     class Meta:
