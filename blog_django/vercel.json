@@ -1,28 +1,16 @@
 {
   "version": 2,
+  "buildCommand": "python3 -m pip install -r requirements.txt && python3 manage.py collectstatic --noinput",
+  "installCommand": "python3 -m pip install -r requirements.txt",
   "env": {
-    "DJANGO_SETTINGS_MODULE": "django_blog.settings",
-    "SECRET_KEY": "@secret",
-    "DEBUG": "False",
-    "DATABASE_URL": "@database_url",
-    "USE_CLOUDINARY": "@use_cloudinary",
-    "CLOUDINARY_CLOUD_NAME": "@cloud_name",
-    "CLOUDINARY_API_KEY": "@cloud_key",
-    "CLOUDINARY_API_SECRET": "@cloud_secret"
+    "DJANGO_SETTINGS_MODULE": "django_blog.settings"
   },
-  "builds": [
-    {
-      "src": "blog_django/manage.py",
-      "use": "@vercel/python",
-      "config": {
-        "maxLambdaSize": "50mb"
-      }
+  "functions": {
+    "api/index.py": {
+      "runtime": "python3.11"
     }
-  ],
+  },
   "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "blog_django/wsgi.py"
-    }
+    { "src": "/(.*)", "dest": "api/index.py" }
   ]
 }
