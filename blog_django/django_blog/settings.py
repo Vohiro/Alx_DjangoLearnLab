@@ -146,15 +146,17 @@ LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 
 # Media setting
-if os.getenv("USE_CLOUDINARY", "true").lower() == "true":
-    INSTALLED_APPS += ["cloudinary", "cloudinary_storage"]
+if os.getenv("USE_CLOUDINARY", "false").lower() == "true":
+    # INSTALLED_APPS += ["cloudinary", "cloudinary_storage"]
     CLOUDINARY_STORAGE = {
         "CLOUD_NAME": os.getenv("CLOUDINARY_CLOUD_NAME"),
         "API_KEY": os.getenv("CLOUDINARY_API_KEY"),
         "API_SECRET": os.getenv("CLOUDINARY_API_SECRET"),
     }
     DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
-    MEDIA_URL = "/media/"
+    # MEDIA_URL = "/media/"
+    MEDIA_URL = f"https://res.cloudinary.com/{os.getenv('CLOUDINARY_CLOUD_NAME')}/"
+
 else:
     # local-only fallback
     MEDIA_URL = "/media/"
