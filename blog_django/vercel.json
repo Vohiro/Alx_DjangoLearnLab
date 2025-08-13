@@ -1,16 +1,28 @@
 {
+  "version": 2,
   "env": {
-    "DJANGO_SETTINGS_MODULE": "django_blog.settings"
+    "DJANGO_SETTINGS_MODULE": "django_blog.settings",
+    "SECRET_KEY": "@secret",
+    "DEBUG": "False",
+    "DATABASE_URL": "@database_url",
+    "USE_CLOUDINARY": "@use_cloudinary",
+    "CLOUDINARY_CLOUD_NAME": "@cloud_name",
+    "CLOUDINARY_API_KEY": "@cloud_key",
+    "CLOUDINARY_API_SECRET": "@cloud_secret"
   },
   "builds": [
     {
       "src": "blog_django/manage.py",
       "use": "@vercel/python",
-      "config": { "maxLambdaSize": "15mb" }
+      "config": {
+        "maxLambdaSize": "50mb"
+      }
     }
   ],
-  "buildCommand": "python -m pip install -r requirements.txt && python manage.py collectstatic --noinput",
   "routes": [
-    { "src": "/(.*)", "dest": "/api/index.py" }
+    {
+      "src": "/(.*)",
+      "dest": "blog_django/wsgi.py"
+    }
   ]
 }
