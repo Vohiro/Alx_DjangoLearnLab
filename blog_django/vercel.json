@@ -2,7 +2,7 @@
   "env": {
     "DJANGO_SETTINGS_MODULE": "django_blog.settings"
   },
-  "buildCommand": "pip install -r requirements.txt && python manage.py collectstatic --noinput",
+  "buildCommand": "Python -m pip install -r requirements.txt && python manage.py collectstatic --noinput",
   "routes": [
     { "src": "/(.*)", "dest": "/api/index.py" }
   ]
