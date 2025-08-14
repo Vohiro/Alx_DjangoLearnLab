@@ -23,7 +23,7 @@ class PostForm(forms.ModelForm):
         fields = ['title', 'content', 'tags', 'image']
         widgets = {
             'title': forms.TextInput(),
-            'body': forms.Textarea(),
+            'content': forms.Textarea(),
             'tags': TagWidget(), 
             'image': forms.ClearableFileInput(),
         }

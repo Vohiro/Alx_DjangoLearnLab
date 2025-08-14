@@ -3,7 +3,7 @@
 {% block content %}
     <div class="edit-post-container">
         <h1 style='color: #0d1b2a;'>Edit post</h1>
-        <form action="" method="post" class="edit-post-form">
+        <form action="" method="post" enctype="multipart/form-data" class="edit-post-form">
             {% csrf_token %}
             {{ form.as_p }}
             <input type="submit" value="Update" class="btn-submit">

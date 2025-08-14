@@ -6,7 +6,7 @@
 <div class="post-container" style='padding: 20px;'>
     {% if post.image %}
         <div class="post-image">
-            <img src="{{ post.image.url }}" alt="Post image">
+            <img src="{{ post.image.url }}" onerror="this.onerror=null; this.src='https://res.cloudinary.com/dicksylbb/image/upload/v1755180745/post_images/default_splnws.jpg';" alt="Post image">
         </div>
     {% else %}
         <div class="post-image">
