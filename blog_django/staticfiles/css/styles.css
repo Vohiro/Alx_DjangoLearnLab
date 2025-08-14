@@ -1,0 +1,783 @@
+/* ===== RESET ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Make the content take up available space */
+.content {
+    flex: 1;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    color: white;
+
+    /* Background image with gradient overlay */
+    background: 
+        linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), /* light overlay */
+        url('/static/images/hero-trading-bg.jpg') no-repeat center center fixed;
+    background-size: cover;
+    backdrop-filter: blur(4px); /* blur effect */
+    animation: fadeInBg 1.5s ease-in-out;
+}
+
+/* Fades background in */
+@keyframes fadeInBg {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Make content grow and push footer down */
+main {
+    flex: 1;
+}
+
+/* ===== HEADER ===== */
+header {
+    background-color: rgba(51, 51, 51, 0.85);
+    padding: 10px;
+    text-align: center;
+}
+
+header nav ul {
+    list-style-type: none;
+}
+
+header nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+header nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+/* ===== HERO SECTION ===== */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    padding: 50px 20px;
+    flex-wrap: wrap;
+}
+
+.hero-text {
+    flex: 1 1 400px;
+    max-width: 600px;
+}
+
+.hero-text h1 {
+    font-size: 2.8rem;
+    margin-bottom: 20px;
+}
+
+.hero-text p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    line-height: 1.5;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+/* ===== FOOTER ===== */
+footer {
+    background-color: rgba(51, 51, 51, 0.85);
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+/* ===== post header in post page ===== */
+.post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* makes it responsive on small screens */
+    gap: 10px;
+}
+
+.post-header h2 {
+    margin: 0;
+    color: #0d1b2a; /* your chosen title color */
+}
+
+.search-form {
+    display: flex;
+    gap: 5px;
+}
+
+.search-form input {
+    padding: 5px;
+    font-size: 1rem;
+}
+
+.search-form button {
+    padding: 5px 10px;
+    background-color: #0d1b2a;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.search-form button:hover {
+    background-color: #1b263b;
+}
+
+
+.post-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px; /* space between image and text */
+    margin-bottom: 30px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 15px;
+}
+
+.post-image img {
+    max-width: 250px;
+    height: auto;
+    border-radius: 5px;
+}
+
+.post-details {
+    flex: 1;
+}
+
+.post-details h2 a { 
+    color: #8B4513; 
+    text-decoration: none;
+}
+
+.post-details h2 a:hover {
+    text-decoration: underline;
+}
+
+.tags a {
+    color: blue;
+    text-decoration: none;
+}
+
+.tags a:hover {
+    text-decoration: underline;
+    color: #8a2be2;
+}
+
+.date {
+    font-size: 0.9em;
+    color: #5c6b73;
+    font-style: italic;
+}
+
+.post-body {
+    color: #5C4033;
+}
+
+.tags-label {
+    color: #0d1b2a; 
+    font-weight: bold;
+}
+
+.edit-post-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.edit-post-form p {
+    margin-bottom: 20px; /* space between fields */
+}
+
+.edit-post-form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #5a3e2b; /* nice brown tone */
+}
+
+.edit-post-form input[type="text"],
+.edit-post-form input[type="password"],
+.edit-post-form input[type="email"],
+.edit-post-form textarea,
+.edit-post-form select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+    background-color: #faf9f7;
+}
+
+.edit-post-form input[type="text"]:focus,
+.edit-post-form input[type="password"]:focus,
+.edit-post-form input[type="email"]:focus,
+.edit-post-form textarea:focus,
+.edit-post-form select:focus {
+    border-color: #8b5e3c; /* brown highlight */
+    outline: none;
+}
+
+.btn-submit {
+    background-color: #8b5e3c; /* brown button */
+    color: white;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-submit:hover {
+    background-color: #6e452b;
+}
+
+/* Delete Post Page Styling */
+.delete-post-container {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 600px;
+    margin: 50px auto;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.delete-post-container h1 {
+    color: #8B0000; /* Dark red for emphasis */
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.delete-post-container p {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.delete-post-container input[type="submit"] {
+    background-color: #8B0000; /* Matches title */
+    color: white;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.delete-post-container input[type="submit"]:hover {
+    background-color: #B22222; /* Lighter red on hover */
+}
+
+/* Wrapper for comment form */
+.comment-form-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 25px;
+    background-color: rgba(255, 255, 255, 0.95); /* faint background */
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+/* Form fields styling */
+.comment-form input[type="text"],
+.comment-form textarea,
+.comment-form select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #c4a484; /* soft brown tone to match theme */
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: #fffaf5;
+    color: #333;
+    box-sizing: border-box;
+}
+
+.comment-form textarea {
+    min-height: 120px;
+}
+
+/* Submit button styling */
+.btn-submit {
+    background-color: #8b4513; /* warm brown */
+    color: #fff;
+    padding: 12px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.btn-submit:hover {
+    background-color: #a0522d; /* lighter reddish-brown hover */
+}
+
+/* Login prompt */
+.login-prompt {
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+.login-prompt a {
+    color: #8b4513;
+    text-decoration: underline;
+}
+
+/* Edit Comment container */
+.edit-comment-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 25px;
+    background: #fff8f0; /* warm background to match brownish theme */
+    border: 1px solid #d9b99b;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+/* Heading */
+.edit-comment-container h2 {
+    font-size: 1.8rem;
+    color: #5a3e2b; /* deep brown */
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Form fields */
+.styled-form p,
+.styled-form div {
+    margin-bottom: 18px;
+}
+
+.styled-form input[type="text"],
+.styled-form textarea,
+.styled-form select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #d9b99b;
+    border-radius: 5px;
+    font-size: 1rem;
+    background: #fffdf8;
+}
+
+/* Button */
+.btn-save {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #8b4513; /* reddish-brown */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-save:hover {
+    background-color: #a0522d; /* lighter brown on hover */
+}
+
+/* Profile container */
+.profile-container {
+    max-width: 600px;
+    margin: 40px auto;
+    background: #fff8f5;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    color: #5a3e36;
+}
+
+/* Headings */
+.profile-container h2 {
+    text-align: center;
+    color: #a0522d; /* Reddish brown */
+    margin-bottom: 20px;
+}
+
+/* Authentication info */
+.auth-info {
+    margin-bottom: 15px;
+    font-size: 15px;
+}
+
+.login-link {
+    color: #a0522d;
+    text-decoration: none;
+    font-weight: bold;
+}
+.login-link:hover {
+    text-decoration: underline;
+}
+
+/* Forms */
+.profile-form p,
+.logout-form {
+    margin-bottom: 15px;
+}
+
+/* Input fields */
+.profile-form input[type="text"],
+.profile-form input[type="email"],
+.profile-form input[type="file"],
+.profile-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+/* Buttons */
+.btn-save, .btn-logout {
+    background-color: #a0522d; /* Reddish brown */
+    color: white;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+.btn-save:hover, .btn-logout:hover {
+    background-color: #8b3e1f;
+}
+
+/* Profile Picture */
+.profile-picture {
+    text-align: center;
+    margin-top: 20px;
+}
+.profile-picture img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 3px solid #a0522d;
+    object-fit: cover;
+}
+
+.new-post-container {
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 25px;
+    background-color: #fff7f5; /* soft warm tone */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.new-post-container h1 {
+    text-align: center;
+    color: #8B4513; /* saddle brown */
+    margin-bottom: 25px;
+}
+
+.new-post-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.new-post-container form p {
+    margin: 0;
+}
+
+.new-post-container input[type="text"],
+.new-post-container textarea,
+.new-post-container select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.new-post-container input[type="text"]:focus,
+.new-post-container textarea:focus,
+.new-post-container select:focus {
+    outline: none;
+    border-color: #A0522D;
+    box-shadow: 0 0 4px rgba(160, 82, 45, 0.4);
+}
+
+.new-post-container input[type="submit"] {
+    background-color: #A0522D;
+    color: white;
+    padding: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.new-post-container input[type="submit"]:hover {
+    background-color: #8B4513;
+}
+
+/* Container styling */
+.tagged-posts-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Heading styling */
+.tagged-posts-title {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    color: #222;
+}
+
+.tag-name {
+    color: #007bff;
+    font-weight: bold;
+}
+
+/* Card styling for posts */
+.tagged-post-card {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease;
+}
+
+.tagged-post-card:hover {
+    transform: translateY(-3px);
+}
+
+/* Title & Body */
+.tagged-post-title {
+    margin: 0 0 10px;
+    font-size: 1.4em;
+    color: #333;
+}
+
+.tagged-post-body {
+    font-size: 1em;
+    line-height: 1.5;
+    color: #555;
+}
+
+/* Empty message */
+.no-posts {
+    text-align: center;
+    font-style: italic;
+    color: #777;
+}
+
+/* Signup Form Styles */
+.signup-container {
+    max-width: 450px;
+    margin: 40px auto;
+    padding: 25px;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.08);
+}
+
+.signup-title {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #0d1b2a; /* Deep navy to match your theme */
+}
+
+.signup-form p {
+    margin-bottom: 15px;
+}
+
+.signup-form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 6px;
+    color: #333;
+}
+
+/* Make all inputs consistent */
+.signup-form input[type="text"],
+.signup-form input[type="email"],
+.signup-form input[type="password"] {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+    background-color: #fff;
+    transition: border 0.3s ease;
+    box-sizing: border-box;
+}
+
+.signup-form input[type="text"]:focus,
+.signup-form input[type="email"]:focus,
+.signup-form input[type="password"]:focus {
+    border-color: #a0522d; /* Reddish brown highlight */
+    outline: none;
+}
+
+/* Submit button styling */
+.signup-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #a0522d; /* Reddish brown theme color */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.signup-btn:hover {
+    background-color: #8b4513; /* Darker reddish brown on hover */
+}
+
+
+.contact-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
+    padding: 30px;
+    max-width: 1000px;
+    margin: 40px auto;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.contact-image img {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    border: 3px solid #0077b5; /* LinkedIn blue accent */
+    object-fit: cover;
+}
+
+.contact-details {
+    flex: 1;
+}
+
+.contact-title {
+    font-size: 26px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.contact-bio {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.contact-links {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.contact-links a {
+    padding: 8px 16px;
+    border-radius: 6px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.btn-linkedin {
+    background: #0077b5;
+}
+
+.btn-linkedin:hover {
+    background: #005b88;
+}
+
+.btn-github {
+    background: #333;
+}
+
+.btn-github:hover {
+    background: #000;
+}
+
+.contact-info p {
+    font-size: 14px;
+    margin: 4px 0;
+}
+
+.contact-info a {
+    color: #0077b5;
+    text-decoration: none;
+}
+
+.contact-info a:hover {
+    text-decoration: underline;
+}
+
+/* Pagination styling */
+.pagination {
+    text-align: center;
+    margin-top: 20px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.step-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.pagination-btn {
+    background-color: #007bff;
+    color: white;
+    padding: 8px 14px;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.pagination-btn:hover {
+    background-color: #0056b3;
+}
+
+.current {
+    font-size: 14px;
+    color: #555;
+}
