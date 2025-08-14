@@ -1,16 +1,27 @@
 {
-  "version": 2,
-  "buildCommand": "python3 -m pip install -r requirements.txt && python3 manage.py collectstatic --noinput",
-  "installCommand": "python3 -m pip install -r requirements.txt",
-  "env": {
-    "DJANGO_SETTINGS_MODULE": "django_blog.settings"
-  },
-  "functions": {
-    "api/index.py": {
-      "runtime": "python3.11"
-    }
-  },
-  "routes": [
-    { "src": "/(.*)", "dest": "api/index.py" }
-  ]
-}
+    "version": 2,
+    "builds": [
+      {
+        "src": "django_blog/wsgi.py",
+        "use": "@vercel/python",
+        "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" }
+      },
+      {
+        "src": "build_files.sh",
+        "use": "@vercel/static-build",
+        "config": {
+          "distDir": "staticfiles_build"
+        }
+      }
+    ],
+    "routes": [
+      {
+        "src": "/static/(.*)",
+        "dest": "/static/$1"
+      },
+      {
+        "src": "/(.*)",
+        "dest": "django_blog/wsgi.py"
+      }
+    ]
+  }
