@@ -30,8 +30,8 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = [".vercel.app", 'localhost', "127.0.0.1", "now.sh"]
-CSRF_TRUSTED_ORIGINS = ["https://*.vercel.app"]
+ALLOWED_HOSTS = ["*.onrender.com", 'localhost', "127.0.0.1", "*.vercel.app"]
+CSRF_TRUSTED_ORIGINS = ["https://*.onrender.com", "https://*.vercel.app"]
 
 
 # Application definition
@@ -158,8 +158,8 @@ CLOUDINARY_STORAGE = {
     }
 
 
-MEDIA_URL = "/media/"
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+#MEDIA_URL = "/media/"
+#MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # django-crispy-forms 3rd party setting
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
