@@ -16,6 +16,8 @@ from .views import (
     PostBySearchView,
     contact_developer,
     )
+from django.conf import settings
+from django.conf.urls.static import static
 
 
 urlpatterns = [
@@ -36,3 +38,6 @@ urlpatterns = [
     path('search/', PostBySearchView.as_view(), name='posts_by_search'),
     path('contact/', contact_developer, name='contact_developer'),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
