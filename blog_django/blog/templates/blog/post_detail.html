@@ -32,7 +32,7 @@
                 <span>No tags</span>
             {% endfor %}
         </p>
-        {% if user == comment.author %}
+        {% if user.is_authenticated %}
             <a href="{% url 'post_edit' post.pk %}" class="search-form" style='padding:1.5px;'>
                 <button type="submit">Edit Post</button>
             </a>
