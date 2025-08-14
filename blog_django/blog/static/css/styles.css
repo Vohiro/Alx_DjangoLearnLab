@@ -747,3 +747,37 @@ footer {
 .contact-info a:hover {
     text-decoration: underline;
 }
+
+/* Pagination styling */
+.pagination {
+    text-align: center;
+    margin-top: 20px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.step-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.pagination-btn {
+    background-color: #007bff;
+    color: white;
+    padding: 8px 14px;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.pagination-btn:hover {
+    background-color: #0056b3;
+}
+
+.current {
+    font-size: 14px;
+    color: #555;
+}

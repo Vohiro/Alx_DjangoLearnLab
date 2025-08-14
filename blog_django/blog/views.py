@@ -32,6 +32,7 @@ class PostsView(ListView):
     template_name = 'blog/posts.html'
     context_object_name = 'posts'
     ordering = ['-published_date']
+    paginate_by = 3
 
     
 class PostByTagListView(ListView):
