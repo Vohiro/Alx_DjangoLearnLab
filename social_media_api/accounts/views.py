@@ -7,6 +7,7 @@ from rest_framework.views import APIView
 from rest_framework import status, permissions
 from django.shortcuts import get_object_or_404
 from .models import CustomUser
+from notifications.models import Notification
 
 class RegisterView(generics.CreateAPIView):
     serializer_class = RegisterSerializer
@@ -47,6 +48,13 @@ class FollowUserView(APIView):
         if target_user == request.user:
             return Response({"error": "You cannot follow yourself"}, status=400)
         request.user.following.add(target_user)
+        # Create notification for the user being followed
+        Notification.objects.create(
+            recipient=target_user,
+            actor=request.user,
+            verb="started following",
+            target=target_user
+        )
         return Response({"message": f"You are now following {target_user.username}"}, status=200)
 
 
