@@ -1,10 +1,10 @@
-from rest_framework import viewsets
+from rest_framework import viewsets, generics
 from .serializers import PostSerializer, CommentSerializer
 from .models import Post, Comment
 from django.db.models import Count
 from rest_framework.decorators import action
 from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
 from .permissions import IsAuthorOrReadOnly
 
 
@@ -57,3 +57,14 @@ class CommentViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
+
+
+class FeedView(generics.ListAPIView):
+    serializer_class = PostSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        # Get the users that the current user follows
+        following_users = self.request.user.following.all()
+        # Get posts by those users
+        return Post.objects.filter(author__in=following_users).order_by("-created_at")
