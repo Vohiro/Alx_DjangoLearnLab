@@ -43,7 +43,7 @@ class FollowUserView(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def post(self, request, user_id):
-        target_user = get_object_or_404(CustomUser, id=user_id)
+        target_user = get_object_or_404(CustomUser.objects.all(), id=user_id)
         if target_user == request.user:
             return Response({"error": "You cannot follow yourself"}, status=400)
         request.user.following.add(target_user)
@@ -54,6 +54,6 @@ class UnfollowUserView(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def post(self, request, user_id):
-        target_user = get_object_or_404(CustomUser, id=user_id)
+        target_user = get_object_or_404(CustomUser.objects.all(), id=user_id)
         request.user.following.remove(target_user)
         return Response({"message": f"You have unfollowed {target_user.username}"}, status=200)
