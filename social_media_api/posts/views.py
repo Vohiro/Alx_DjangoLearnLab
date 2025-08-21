@@ -16,7 +16,7 @@ class PostViewSet(viewsets.ModelViewSet):
     ordering_fields = ["created_at", "updated_at", "title"]  # ?ordering=-created_at
 
     def get_queryset(self):
-        return Post.objects.select_related("author").annotate(
+        return Post.objects.all().select_related("author").annotate(
             comments_count=Count("comments")
         )
 
@@ -49,7 +49,7 @@ class CommentViewSet(viewsets.ModelViewSet):
     ordering_fields = ["created_at", "updated_at"]
 
     def get_queryset(self):
-        qs = Comment.objects.select_related("post", "author")
+        qs = Comment.objects.all().select_related("post", "author")
         post_id = self.request.query_params.get("post")
         if post_id:
             qs = qs.filter(post_id=post_id)
