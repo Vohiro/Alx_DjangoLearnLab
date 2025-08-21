@@ -2,7 +2,9 @@
 This project sets up the foundation of a Social Media API with Django + DRF.  
 It includes custom user authentication, registration, login, and profile management.
 
-## Features
+## User account
+
+### Endpoints
 - Custom User Model (with bio, profile picture, followers)
 - Token-based Authentication
 - Endpoints:
@@ -27,6 +29,12 @@ It includes custom user authentication, registration, login, and profile managem
 ## User_Follow & Feeds
 
 ### Endpoints
-- POST /accounts/follow/<id>/      (auth)  → Follow User Endpoint
-- POST /accounts/unfollow/<id>/    (auth)  → Unfollow User Endpoint
-- GET /posts/feed/                 (auth)  → User Feed Endpoint
+- POST      /accounts/follow/<id>/      (auth)  → Follow User Endpoint
+- POST      /accounts/unfollow/<id>/    (auth)  → Unfollow User Endpoint
+- GET       /posts/feed/                (auth)  → User Feed Endpoint
+
+
+## Notigication and likes
+- POST      /posts/{id}/like/        (auth) → like a post
+- POST      /posts/{id}/unlike/      (auth) → unlike a post
+- GET       /notifications/          (auth) → fetch logged-in user’s notifications

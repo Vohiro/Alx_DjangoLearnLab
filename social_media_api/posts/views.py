@@ -9,6 +9,7 @@ from .permissions import IsAuthorOrReadOnly
 from rest_framework.decorators import api_view, permission_classes
 from notifications.models import Notification
 from rest_framework.views import APIView
+# from django.shortcuts import get_object_or_404
 
 
 class PostViewSet(viewsets.ModelViewSet):
@@ -59,6 +60,8 @@ class CommentViewSet(viewsets.ModelViewSet):
         return qs
 
     def perform_create(self, serializer):
+        # post_id = self.kwargs.get("post_pk")
+        # post = get_object_or_404(Post, pk=post_id)
         comment = serializer.save(author=self.request.user)
 
         # Create notification for the post author
