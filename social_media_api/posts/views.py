@@ -1,10 +1,10 @@
-from rest_framework import viewsets, generics
+from rest_framework import viewsets, generics, permissions
 from .serializers import PostSerializer, CommentSerializer
 from .models import Post, Comment
 from django.db.models import Count
 from rest_framework.decorators import action
 from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from .permissions import IsAuthorOrReadOnly
 
 
@@ -61,7 +61,7 @@ class CommentViewSet(viewsets.ModelViewSet):
 
 class FeedView(generics.ListAPIView):
     serializer_class = PostSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
         # Get the users that the current user follows
