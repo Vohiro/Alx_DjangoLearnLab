@@ -162,3 +162,14 @@ REST_FRAMEWORK = {
 #            default=os.getenv("DATABASE_URL")
 #        )
 #    }
+
+#    DATABASES = {
+#        'default':{
+#            'ENGINNE': 'django.db.backend.postresql',
+#            'NAME': 'railway',
+#            'USER': 'postgres',
+#            'PASSWEORD': 'mypassword',
+#            'HOST': 'autotrack.proxy.rlwy.net',
+#            'PORT': '5432',
+#        }
+#    }
