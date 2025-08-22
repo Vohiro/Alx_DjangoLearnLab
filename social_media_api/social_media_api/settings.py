@@ -24,6 +24,7 @@ SECRET_KEY = 'django-insecure-)4!hj11)s*u3v_%d+@q9szjp$%qwol4a65j$*yv#b+)j#$51t2
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+# DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -120,6 +121,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
+# STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
@@ -144,3 +146,19 @@ REST_FRAMEWORK = {
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
     "PAGE_SIZE": 10,
  }
+
+
+# SECURITY HEADERS
+# SECURE_BROWSER_XSS_FILTER = True
+# SECURE_CONTENT_TYPE_NOSNIFF = True
+# X_FRAME_OPTIONS = "DENY"
+# SECURE_SSL_REDIRECT = True  # (if using HTTPS)
+
+
+# DATABASE (example for PostgreSQL in prod)
+#    import dj_database_url
+#    DATABASES = {
+#        "default": dj_database_url.config(
+#            default=os.getenv("DATABASE_URL")
+#        )
+#    }
